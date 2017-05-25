@@ -6,14 +6,15 @@ use App\Topic;
 
 class QuestionsRepository{
 
-    public function byIdWithTopics($id)
+    public function byIdWithTopicsAndAnswers($id)
     {
-        return Question::with('topics')->findOrFail($id);
+        //return Question::with(['topics','answers'])->findOrFail($id);
+        return Question::where('id',$id)->with(['topics','answers'])->first();
     }
 
-    public function create($data)
+    public function create(array $attributes)
     {
-        return Question::create($data);
+        return Question::create($attributes);
     }
 
     public function deal(array $topics)

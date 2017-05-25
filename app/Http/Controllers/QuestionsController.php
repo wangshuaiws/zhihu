@@ -77,7 +77,7 @@ class QuestionsController extends Controller
     public function show($id)
     {
         //$question = Question::where('id',$id)->with('topics')->first();
-        $question = $this->questionrepository->byIdWithTopics($id);
+        $question = $this->questionrepository->byIdWithTopicsAndAnswers($id);
         return view('questions.show',compact('question'));
     }
 
@@ -124,7 +124,14 @@ class QuestionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $question = $this->questionrepository->byId($id);
+        if(Auth::user()->owns($question)) {
+            $question->delete();
+
+            return redirect('/');
+        }
+
+        abort(403,'Forbidden'); //也可以失败直接返回 return back();
     }
 
 }
