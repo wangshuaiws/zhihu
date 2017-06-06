@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Mailer\Mailer;
 
 class User extends Authenticatable
 {
@@ -57,5 +58,43 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(self::class,'followers','follower_id','followed_id')->withTimestamps();
     }
+
+    public function followersUser()
+    {
+        return $this->belongsToMany(self::class,'followers','followed_id','follower_id')->withTimestamps();
+    }
+
+    public function followThisUser($user)
+    {
+        return $this->followers()->toggle($user);
+    }
+
+    //重置密码 由于5.3自带重置密码功能 所以该方法未启用
+//    public function sendPasswordResetNotification($token)
+//    {
+//        (new UserMailer())->passwordReset($this->email,$token);
+//    }
+
+    public function votes()
+    {
+        return $this->belongsToMany(Answer::class,'votes')->withTimestamps();
+
+    }
+
+    public function voteFor($answer)
+    {
+        return $this->votes()->toggle($answer);
+    }
+
+    public function hasVoteFor($answer)
+    {
+        return $this->votes()->where('answer_id',$answer)->count();
+    }
+
+    public function message()
+    {
+        return $this->hasMany(Message::class,'to_user_id');
+    }
+
 
 }

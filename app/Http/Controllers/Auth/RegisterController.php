@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\UserMailer\UserMailer;
 use Mail;
 use Naux\Mail\SendCloudTemplate;
 use App\User;
@@ -77,16 +78,7 @@ class RegisterController extends Controller
     }
 	private function sendVerifyEmailTo($user)
 	{
-		$data = ['url' => route('email.verify',['token' => $user->confirmation_token]),
-		         'name' => $user->name
-				];
-        $template = new SendCloudTemplate('zhihu', $data);
-
-        Mail::raw($template, function ($message) use ($user) {
-        $message->from('1473949341@qq.com', 'ws970');
-
-        $message->to($user->email);
-});
+        (new UserMailer())->welcome($user);
 	}
 	
 }

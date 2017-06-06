@@ -40,4 +40,11 @@ class QuestionsRepository{
         return Question::published()->latest('updated_at')->with('user')->get();
 
     }
+
+    public function getQuestionCommentsById($id)
+    {
+        $question = Question::with('comments','comments.user')->where('id',$id)->first();
+        return $question->comments;
+    }
+
 }

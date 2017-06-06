@@ -23,6 +23,10 @@
                                 <button class="button is-naked delete-button">删除</button>
                             </form>
                         @endif
+                            <comments type="question"
+                                      model="{{ $question->id }}"
+                                      count="{{ $question->comments()->count() }}">
+                            </comments>
                     </div>
                 </div>
             </div>
@@ -47,7 +51,7 @@
                         @foreach($question->answers as $answer)
                             <div class="media">
                                 <div class="media-left">
-                                    <user-vote-button answer="{{$answer->id}}" count="{{$answer->votes_count}}"></user-vote-button>
+                                    <user-vote-button answer="{{ $answer->id }}" count="{{ $answer->votes_count }}"></user-vote-button>
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading">
@@ -57,6 +61,10 @@
                                     </h4>
                                     {!! $answer->body !!}
                                 </div>
+                                <comments type="answer"
+                                          model="{{ $answer->id }}"
+                                          count="{{ $answer->comments()->count() }}">
+                                </comments>
                             </div>
                         @endforeach
                         @if(Auth::check())
@@ -114,8 +122,8 @@
                                         </div>
                                         </div>
                                         <div class="panel-body">
-                                        <question-follow-button question="{{$question->id}}"></question-follow-button>
-                                        <a href="#editor" class="btn btn-primary pull-right">撰写答案</a>
+                                            <user-follow-button user="{{ $question->user_id }}"></user-follow-button>
+                                            <send-message user="{{ $question->user_id }}"></send-message>
                                         </div>
                                         </div>
                                         </div>

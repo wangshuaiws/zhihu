@@ -40,4 +40,9 @@ class Question extends Model
     {
         return $this->belongsToMany(Follow::class,'user_question')->withTimestamps();
     }
+
+    public function comments()
+    {
+        return $this->morphMany('App\Comment','commentable');
+    }
 }

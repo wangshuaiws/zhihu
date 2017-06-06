@@ -15,6 +15,11 @@ require('./bootstrap');
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('question-follow-button', require('./components/QuestionFollowButton.vue'));
+Vue.component('user-follow-button', require('./components/UserFollowButton.vue'));
+Vue.component('user-vote-button', require('./components/UserVoteButton.vue'));
+Vue.component('send-message', require('./components/SendMessage.vue'));
+Vue.component('comments', require('./components/Comments.vue'));
+Vue.component('user-avatar', require('./components/Avatar.vue'));
 
 const app = new Vue({
     el: '#app'
