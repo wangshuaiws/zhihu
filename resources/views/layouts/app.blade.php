@@ -50,7 +50,11 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        {{--<li>--}}
+                            {{--<button class="btn btn-primary" type="button">--}}
+                                {{--Messages <span class="badge">4</span>--}}
+                            {{--</button>--}}
+                        {{--</li>--}}
                     </ul>
 
                     <!-- Right Side Of Navbar -->

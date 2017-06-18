@@ -22,7 +22,7 @@ Route::resource('questions','QuestionsController',['names' => [
     'show' => 'question.show',
 ]]);
 Route::post('questions/{question}/answer','AnswerController@store');
-Route::get('questions/{question}/follow','FollowController@follow');
+Route::get('questions/{question}/follow','FollowersController@follow');
 
 Route::get('notifications','NotificationsController@index');
 Route::get('notifications/{notification}','NotificationsController@show');
@@ -32,6 +32,9 @@ Route::post('avatar','UsersController@changeAvatar');
 
 Route::get('password','PasswordController@password');
 Route::post('password/update','PasswordController@update');
+
+Route::get('setting','SettingController@index');
+Route::post('setting','SettingController@store');
 
 Route::get('inbox','InboxController@index');
 Route::get('inbox/{dialogId}','InboxController@show');
