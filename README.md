@@ -22,4 +22,4 @@
 - 发送邮件的功能实现使用插件 naux/sendcloud 
 - 编辑器实现 overtrue/laravel-ueditor
 
-## 项目演示地址: https://www.ws970.cn
+## 项目演示地址: http://www.ws970.cn
